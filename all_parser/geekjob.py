@@ -3,10 +3,10 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 
 
-def parse_geekjob(text):
+def geekjob_jobs(text : str):
     
     url = "https://geekjob.ru/vacancies?qs=" + text
-    browser=webdriver.Chrome()
+    browser = webdriver.Chrome()
     
     with open('data.html', 'r+', encoding='utf-8') as r:
         browser.get("https://geekjob.ru/vacancies?qs=" + text)
@@ -27,11 +27,11 @@ def parse_geekjob(text):
         link = 'https://geekjob.ru/' + vacaincie.a['href']
         
     
-        print(f'Title: {title}\nCompany: {name}\nURL: {link}\nInfo: {info}')
-        print()
+        print(f'Title: {title}\nCompany: {name}\nURL: {link}\nInfo: {info}\n')
+
 
 
 text = 'python'
-parse_geekjob(text)
+geekjob_jobs(text)
 
 

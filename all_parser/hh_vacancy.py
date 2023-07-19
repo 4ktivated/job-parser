@@ -1,6 +1,6 @@
 import requests
 
-def hh_jobs(text):
+def hh_jobs(text : str):
     url = "https://api.hh.ru/vacancies"
     params = {
         "text": text,
@@ -32,8 +32,7 @@ def hh_jobs(text):
             else:
                 salary = 'Не указанна'
                 
-            print(f"Title: {vacancy_title}\nCompany: {company_name}\nURL: {vacancy_url}\nSalary: {salary}\nExperience: {experience}")
-            print()
+            print(f"Title: {vacancy_title}\nCompany: {company_name}\nURL: {vacancy_url}\nSalary: {salary}\nExperience: {experience}\n")
     else:
         print(f"Request failed with status code: {response.status_code}")
  

@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup as BS
 import lxml
 
 
-def habr_job(text):
+def habr_jobs(text : str):
     habr_url = 'https://career.habr.com/vacancies?q='+ text +'&qid=3&type=all'
     
     response = requests.get(habr_url).text
@@ -23,9 +23,9 @@ def habr_job(text):
             salary = 'Не указанна'
 
         
-        print(f'Title: {title}\nCompany: {name}\nURL: {link}\nSalary: {salary}\nStack: {stack}')
-        print()
+        print(f'Title: {title}\nCompany: {name}\nURL: {link}\nSalary: {salary}\nStack: {stack}\n')
+
 
 
 text = 'python'      
-habr_job(text)
+habr_jobs(text)
