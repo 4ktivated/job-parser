@@ -1,25 +1,29 @@
 import requests
 from bs4 import BeautifulSoup as BS
 import lxml
-from selenium import webdriver
+from selenium import webdriver  #это тут для парсера с OZON, но егоя не доделал
 
 
-text = 'python'
+
 
 def vk_jobs(text : str):
     url = 'https://team.vk.company/vacancy/?specialty=&town=&tag=&search=' + text
     
-    response = requests.get(url).text
-    soup = BS(response, 'lxml')
+    response = requests.get(url)
+    soup = BS(response.text, 'lxml')
     
-    for vacancy in soup.find_all('a', class_ = 'result-item js-result-list-item'):
-        title = vacancy.find('h3', class_ = 'title-block').text.strip()
-        project = vacancy.find('div', class_ = 'result-item-unit').text.strip()
-        city_type = vacancy.find('div', class_ = 'result-item-place').text.strip()
-        link = 'https://team.vk.company' + vacancy['href']
+    if response.status_code == 200:
         
-        print(f'Title: {title}\nProject: {project}\nCity and Type work: {city_type}\nLink: {link}\n')
+        for vacancy in soup.find_all('a', class_ = 'result-item js-result-list-item'):
+            title = vacancy.find('h3', class_ = 'title-block').text.strip()
+            project = vacancy.find('div', class_ = 'result-item-unit').text.strip()
+            city_type = vacancy.find('div', class_ = 'result-item-place').text.strip()
+            link = 'https://team.vk.company' + vacancy['href']
 
+            print(f'Title: {title}\nProject: {project}\nCity and Type work: {city_type}\nLink: {link}\n')
+    
+    else:
+        print('Sorry this language is not support :(')
 
 
 # def ozon_jobs(text):
@@ -42,6 +46,6 @@ def vk_jobs(text : str):
 #         project = vacancy.find('span').text
 #         print(f'Title: {title}\nProject: {project}\nCity: {city}\nLink: {link}\n')
 
-
+text = 'python'
 #ozon_job(text)
 vk_jobs(text)
