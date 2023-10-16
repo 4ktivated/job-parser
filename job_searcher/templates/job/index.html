@@ -1,0 +1,41 @@
+{% extends 'job/layout.html' %}
+
+{% block content %}
+
+<div style="margin-top: 50px;" class="ui container">
+
+    <nav class="navbar navbar-light bg-white">
+        <a class="navbar-brand" href="/"><p class="display-1">{{ app_name }}</p></a>
+      </nav>
+    <h3 class="display-4">Всё что нужно здесь</h3>
+
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Языки программирования
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{{text_list[0]}}">Python</a>
+          <a class="dropdown-item" href="{{text_list[1]}}">Golang</a>
+          <a class="dropdown-item" href="{{text_list[2]}}">Java</a>
+        </div>
+      </div>
+
+
+    {% for vac in vac_list %}
+    <div class="card text-white bg-dark mb-3" style="max-width: 35rem;">
+        <h5 class="card-header">{{vac.id}}.{{ vac.Title }}</h5>
+        <div class="card-body">
+          <h5 class="card-title">Компания : {{ vac.Company}}</h5>
+          <p class="card-text">Быстрая информация : {{ vac.Info }}</p>
+          <p class="card-text">Зарплата : {{  vac.Salary }}</p>
+          <a href="{{vac.url}}" class="btn btn-outline-info">Переход куда-нибудь</a>
+          <p class="card-text">Поисковой запрос : {{vac.lang}}</p>
+        </div>
+    </div>
+    
+    
+    {% endfor %}
+</div>
+{% endblock content %}
+

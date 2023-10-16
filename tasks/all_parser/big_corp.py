@@ -21,12 +21,12 @@ def vk_jobs(text : str):
             city_type = vacancy.find('div', class_ = 'result-item-place').text.strip()
             link = 'https://team.vk.company' + vacancy['href']
 
-            func_base.append(f'Title: {title}\nCompany: {project}\nUrl: {link}\nSalary: Не указанна\nInfo: {city_type}\n')
-        
+            func_base.append({'lang': text, 'Title': title, 'Company': project, 'URL': link, 'Salary': 'Не указанна', 'Info': city_type})
+
         return func_base
     
-    else:
-        print('Sorry this language is not support :(')
+    # else:
+    #     print('Sorry this language is not support :(')
 
 
 # def ozon_jobs(text):

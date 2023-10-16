@@ -22,12 +22,8 @@ def habr_jobs(text : str):
                 salary = box.find('div', class_ = 'vacancy-card__salary').text
             else:
                 salary = 'Не указанна'
-
-            func_base.append(f'Title: {title}\nCompany: {name}\nURL: {link}\nSalary: {salary}\nInfo: {stack}\n')
+            func_base.append({'lang': text, 'Title': title, 'Company': name, 'URL': link, 'Salary': salary, 'Info': stack})
         return func_base
-    else:
-        print('Sorry this language is not support :(')
-
 
 text = 'python'      
 habr_jobs(text)
