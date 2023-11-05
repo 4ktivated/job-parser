@@ -8,11 +8,11 @@ class Vac(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     lang = Column(String)
-    Title = Column(String)
-    Company = Column(String)
+    title = Column(String)
+    company = Column(String)
     url = Column(Text, nullable=True, unique=True)
-    Salary = Column(String)
-    Info = Column(String)
+    calary = Column(String)
+    info = Column(String)
     
 
 Base.metadata.create_all(bind=choose_db(arg_db=check_db))

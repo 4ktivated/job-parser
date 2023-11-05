@@ -9,7 +9,7 @@ def hh_jobs_perm(text : str):
         "per_page": 100,  # Number of vacancies per page
     }
 
-    response = requests.get(url, params=params)
+    response = requests.get(url, params=params, timeout=10)
 
     if response.status_code == 200:
         data = response.json()

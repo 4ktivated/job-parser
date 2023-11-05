@@ -1,13 +1,12 @@
 import requests
 from bs4 import BeautifulSoup as BS
-import lxml
 
 
-def habr_jobs(text : str):
+def habr_jobs(text):
     func_base = []
     habr_url = 'https://career.habr.com/vacancies?q='+ text +'&qid=3&type=all'
     
-    response = requests.get(habr_url)
+    response = requests.get(habr_url, timeout=10)
 
     soup = BS(response.text, "lxml")
 
@@ -25,5 +24,5 @@ def habr_jobs(text : str):
             func_base.append({'lang': text, 'Title': title, 'Company': name, 'URL': link, 'Salary': salary, 'Info': stack})
         return func_base
 
-text = 'python'      
-habr_jobs(text)
+example = 'python'
+habr_jobs(example)

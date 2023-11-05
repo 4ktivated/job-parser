@@ -11,37 +11,43 @@ from starlette.status import HTTP_303_SEE_OTHER, HTTP_302_FOUND
 from sqlalchemy import create_engine
 
 
-
 engine = create_engine("sqlite:///.\\job_searcher\\database\\DB\\vac.db")
+
 
 def add():
     db_session = Session(bind=engine)
 
     try:
-        for lang in ['python', 'golang', 'java']:
+        for lang in ["python", "golang", "java"]:
             for i in hh_jobs_perm(lang):
-                new_vac = Vac(Title = i.get('Title'),
-                              lang = i.get('lang'),
-                               Company = i.get('Company'),
-                               url = i.get('URL'),
-                               Salary = i.get('Salary'),
-                               Info = i.get('Info'))
+                new_vac = Vac(
+                    Title=i.get("Title"),
+                    lang=i.get("lang"),
+                    Company=i.get("Company"),
+                    url=i.get("URL"),
+                    Salary=i.get("Salary"),
+                    Info=i.get("Info"),
+                )
                 db_session.add(new_vac)
             for i in habr_jobs(lang):
-                new_vac = Vac(Title = i.get('Title'),
-                              lang = i.get('lang'),
-                               Company = i.get('Company'),
-                               url = i.get('URL'),
-                               Salary = i.get('Salary'),
-                               Info = i.get('Info'))
+                new_vac = Vac(
+                    Title=i.get("Title"),
+                    lang=i.get("lang"),
+                    Company=i.get("Company"),
+                    url=i.get("URL"),
+                    Salary=i.get("Salary"),
+                    Info=i.get("Info"),
+                )
                 db_session.add(new_vac)
             for i in vk_jobs(lang):
-                new_vac = Vac(Title = i.get('Title'),
-                              lang = i.get('lang'),
-                               Company = i.get('Company'),
-                               url = i.get('URL'),
-                               Salary = i.get('Salary'),
-                               Info = i.get('Info'))
+                new_vac = Vac(
+                    Title=i.get("Title"),
+                    lang=i.get("lang"),
+                    Company=i.get("Company"),
+                    url=i.get("URL"),
+                    Salary=i.get("Salary"),
+                    Info=i.get("Info"),
+                )
                 db_session.add(new_vac)
         db_session.commit()
     except Exception as e:
@@ -49,7 +55,8 @@ def add():
         print("Ошибка при выполнении фоновой задачи:", str(e))
     finally:
         db_session.close()
-        print('>>>>>>>>>>>>Vacancy add on DATA BASE')
+        print(">>>>>>>>>>>>Vacancy add on DATA BASE")
+
 
 def delete():
     db_session = Session(bind=engine)
@@ -61,5 +68,4 @@ def delete():
         print("Ошибка при выполнении фоновой задачи:", str(e))
     finally:
         db_session.close()
-        print('>>>>>>>>>>>>DATA BASE is clear')
-    
+        print(">>>>>>>>>>>>DATA BASE is clear")
