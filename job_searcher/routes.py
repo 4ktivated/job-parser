@@ -78,28 +78,28 @@ def python(request: Request, db_session: Session = Depends(get_db)):
 @app.post('/add')
 def addon(lang: str = Form(), db_session: Session = Depends(get_db)):
     for i in hh_jobs_perm(lang):
-        new_vac = Vac(Title = i.get('Title'),
+        new_vac = Vac(title = i.get('Title'),
                       lang = i.get('lang'),
-                       Company = i.get('Company'),
+                       company = i.get('Company'),
                        url = i.get('URL'),
-                       Salary = i.get('Salary'),
-                       Info = i.get('Info'))
+                       salary = i.get('Salary'),
+                       info = i.get('Info'))
         db_session.add(new_vac)
     for i in habr_jobs(lang):
-        new_vac = Vac(Title = i.get('Title'),
+        new_vac = Vac(title = i.get('Title'),
                       lang = i.get('lang'),
-                       Company = i.get('Company'),
+                       company = i.get('Company'),
                        url = i.get('URL'),
-                       Salary = i.get('Salary'),
-                       Info = i.get('Info'))
+                       salary = i.get('Salary'),
+                       info = i.get('Info'))
         db_session.add(new_vac)
     for i in vk_jobs(lang):
-        new_vac = Vac(Title = i.get('Title'),
+        new_vac = Vac(title = i.get('Title'),
                       lang = i.get('lang'),
-                       Company = i.get('Company'),
+                       company = i.get('Company'),
                        url = i.get('URL'),
-                       Salary = i.get('Salary'),
-                       Info = i.get('Info'))
+                       salary = i.get('Salary'),
+                       info = i.get('Info'))
         db_session.add(new_vac)
     db_session.commit()
 

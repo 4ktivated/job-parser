@@ -21,32 +21,32 @@ def add():
         for lang in ["python", "golang", "java"]:
             for i in hh_jobs_perm(lang):
                 new_vac = Vac(
-                    Title=i.get("Title"),
+                    title=i.get("Title"),
                     lang=i.get("lang"),
-                    Company=i.get("Company"),
+                    company=i.get("Company"),
                     url=i.get("URL"),
-                    Salary=i.get("Salary"),
-                    Info=i.get("Info"),
+                    salary=i.get("Salary"),
+                    info=i.get("Info"),
                 )
                 db_session.add(new_vac)
             for i in habr_jobs(lang):
                 new_vac = Vac(
-                    Title=i.get("Title"),
+                    title=i.get("Title"),
                     lang=i.get("lang"),
-                    Company=i.get("Company"),
+                    company=i.get("Company"),
                     url=i.get("URL"),
-                    Salary=i.get("Salary"),
-                    Info=i.get("Info"),
+                    salary=i.get("Salary"),
+                    info=i.get("Info"),
                 )
                 db_session.add(new_vac)
             for i in vk_jobs(lang):
                 new_vac = Vac(
-                    Title=i.get("Title"),
+                    title=i.get("Title"),
                     lang=i.get("lang"),
-                    Company=i.get("Company"),
+                    company=i.get("Company"),
                     url=i.get("URL"),
-                    Salary=i.get("Salary"),
-                    Info=i.get("Info"),
+                    salary=i.get("Salary"),
+                    info=i.get("Info"),
                 )
                 db_session.add(new_vac)
         db_session.commit()
