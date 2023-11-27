@@ -24,11 +24,11 @@
 
     {% for vac in vac_list %}
     <div class="card text-white bg-dark mb-3" style="max-width: 35rem;">
-        <h5 class="card-header">{{vac.id}}.{{ vac.Title }}</h5>
+        <h5 class="card-header">{{vac.id}}.{{ vac.title }}</h5>
         <div class="card-body">
-          <h5 class="card-title">Компания : {{ vac.Company}}</h5>
-          <p class="card-text">Быстрая информация : {{ vac.Info }}</p>
-          <p class="card-text">Зарплата : {{  vac.Salary }}</p>
+          <h5 class="card-title">Компания : {{ vac.company}}</h5>
+          <p class="card-text">Быстрая информация : {{ vac.info }}</p>
+          <p class="card-text">Зарплата : {{  vac.salary }}</p>
           <a href="{{vac.url}}" class="btn btn-outline-info">Переход куда-нибудь</a>
           <p class="card-text">Поисковой запрос : {{vac.lang}}</p>
         </div>
