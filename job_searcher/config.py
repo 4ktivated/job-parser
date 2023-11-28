@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     # db_postgre_url = os.getenv('POSTGRES_DB')
 
     class Config:
-        env_file: str = '../.env'
+        env_file: str = '/.env'
 
 
 settings = Settings()

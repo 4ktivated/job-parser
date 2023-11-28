@@ -76,7 +76,7 @@ def python(request: Request, db_session: Session = Depends(get_db)):
 
 #ЭТОТ СЕГМЕНТ СЕЙЧАС НЕ СИЛЬНО АТУАЛЕН РАЗВЕ ЧТО ДЛЯ РУЧНОЙ РАБОЫТ С БД
 @app.post('/add')
-def addon(lang: str = Form(), db_session: Session = Depends(get_db)):
+def addon(lang, db_session: Session = Depends(get_db)):
     for i in hh_jobs_perm(lang):
         new_vac = Vac(title = i.get('Title'),
                       lang = i.get('lang'),
