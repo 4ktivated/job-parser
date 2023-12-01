@@ -7,10 +7,9 @@ from job_searcher.config import settings
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 #BASE_DIR = os.path.dirname(os.path.abspath(__name__))
-#db_path = os.path.join(BASE_DIR)
-db_path = os.path.join(BASE_DIR, 'job_searcher', 'database', 'DB')
-if not os.path.exists(db_path):
-    os.makedirs(db_path)
+#db_path = os.path.join(BASE_DIR, 'job_searcher', 'database', 'DB')
+if not os.path.exists(BASE_DIR):
+    os.makedirs(BASE_DIR)
 
 Base = declarative_base()
 

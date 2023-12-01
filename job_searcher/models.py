@@ -1,3 +1,4 @@
+from attr import s
 from sqlalchemy import Column, String, Integer, Text
 
 from job_searcher.database.base import Base, choose_db, check_db
@@ -10,8 +11,8 @@ class Vac(Base):
     lang = Column(String)
     title = Column(String)
     company = Column(String)
-    url = Column(Text, nullable=True, unique=True)
-    calary = Column(String)
+    url = Column(Text, nullable=True)
+    salary = Column(String)
     info = Column(String)
     
 
