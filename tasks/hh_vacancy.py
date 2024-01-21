@@ -1,15 +1,15 @@
 import requests
 
-def hh_jobs(text : str):
+def hh_jobs_perm(text : str):
     func_base = []
     url = "https://api.hh.ru/vacancies"
     params = {
         "text": text,
-        "area": 72,  # Specify the desired area ID (72 is Perm)
-        "per_page": 50,  # Number of vacancies per page
+        "area": [72, 2, 1, 3],  # Specify the desired area ID (72:Perm, 2:SPB, 1:MSC, 3:EKB)
+        # "per_page": 100,  # Number of vacancies per page
     }
 
-    response = requests.get(url, params=params)
+    response = requests.get(url, params=params, timeout=10)
 
     if response.status_code == 200:
         data = response.json()
@@ -33,11 +33,11 @@ def hh_jobs(text : str):
             else:
                 salary = 'Не указанна'
                 
-            func_base.append(f"Title: {vacancy_title}\nCompany: {company_name}\nURL: {vacancy_url}\nSalary: {salary}\nInfo: {experience}\n")
+            func_base.append({'lang': text, 'Title': vacancy_title, 'Company': company_name, 'URL': vacancy_url, 'Salary': salary, 'Info': experience})
             
         return(func_base)
-    else:
-        print(f"Request failed with status code: {response.status_code}")
+    # else:
+    #     print(f"Request failed with status code: {response.status_code}")
  
-text = "python"
-hh_jobs(text)
+
+# print(hh_jobs_perm('python'))

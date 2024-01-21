@@ -1,7 +1,14 @@
-import os
+from fastapi import APIRouter, FastAPI
 
-import uvicorn
-from job_searcher.app import app
+from database import models
 
-if __name__ == '__main__':
-    uvicorn.run("main:app", host="0.0.0.0", port=os.getenv("PORT", default=8000), log_level="info")
+from database.base_params import  check_db
+from routers import router
+
+app = FastAPI(
+    title="Job searcher"
+    )
+app.include_router(router)
+models.Base.metadata.create_all(bind=check_db)
+
+

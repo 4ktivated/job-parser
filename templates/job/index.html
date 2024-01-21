@@ -5,7 +5,7 @@
 <div style="margin-top: 50px;" class="ui container">
 
     <nav class="navbar navbar-light bg-white">
-        <a class="navbar-brand" href="/"><p class="display-1">{{ app_name }}</p></a>
+        <a class="navbar-brand" href="/"><p class="display-1">Job searcher</p></a>
       </nav>
     <h3 class="display-4">Всё что нужно здесь</h3>
 
@@ -15,9 +15,9 @@
           Языки программирования
         </button>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="{{text_list[0]}}">Python</a>
-          <a class="dropdown-item" href="{{text_list[1]}}">Golang</a>
-          <a class="dropdown-item" href="{{text_list[2]}}">Java</a>
+          {% for lang in text_list %}
+          <a class="dropdown-item" href="{{lang}}">{{lang}}</a>
+          {% endfor %}
         </div>
       </div>
 

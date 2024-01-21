@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup as BS
 import lxml
 from selenium import webdriver  #это тут для парсера с OZON, но егоя не доделал
 
-
+#не работает
 
 
 def vk_jobs(text : str):
@@ -21,16 +21,16 @@ def vk_jobs(text : str):
             city_type = vacancy.find('div', class_ = 'result-item-place').text.strip()
             link = 'https://team.vk.company' + vacancy['href']
 
-            func_base.append(f'Title: {title}\nCompany: {project}\nUrl: {link}\nSalary: Не указанна\nInfo: {city_type}\n')
-        
+            func_base.append({'lang': text, 'Title': title, 'Company': project, 'URL': link, 'Salary': 'Не указанна', 'Info': city_type})
+
         return func_base
     
-    else:
-        print('Sorry this language is not support :(')
+    # else:
+    #     print('Sorry this language is not support :(')
 
 
 # def ozon_jobs(text):
-#     url = 'https://job.ozon.ru/vacancy/?tech=' + text.capitalize()
+#     url = 'https://job.ozon.ru/vacancy/?query=' + text
 #     # browser = webdriver.Chrome()
     
 #      with open('html_ozon.html', 'w', encoding='utf-8') as r:
@@ -50,5 +50,5 @@ def vk_jobs(text : str):
 #         print(f'Title: {title}\nProject: {project}\nCity: {city}\nLink: {link}\n')
 
 text = 'python'
-#ozon_job(text)
-vk_jobs(text)
+# #ozon_job(text)
+print(vk_jobs(text))
