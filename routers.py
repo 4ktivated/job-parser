@@ -39,12 +39,12 @@ def chose_lang(lang: str, request: Request, db_session: Session = Depends(get_db
                                       {'request': request,
                                        'vac_list': vacs,
                                        'text_list': text_list}
-                                      )
+                                      ) 
 
 
 #del and add action
 
-@router.post("/add/{yap}")
+@router.get("/add/{yap}")
 async def add(yap: str ,db_session: Session = Depends(get_db)):
     create_vac(db_session, func_list, yap)
     return RedirectResponse(url="/", status_code=HTTP_303_SEE_OTHER)
