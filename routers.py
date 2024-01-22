@@ -3,7 +3,7 @@ from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi import APIRouter, Request
 from sqlalchemy.orm import Session
-from database.crud import create_vac, get_vacs_by_lang, get_vacs
+from database.crud import create_vacs, get_vacs_by_lang, get_vacs, clear_vacs
 from database.models import Vac
 from starlette.status import HTTP_303_SEE_OTHER
 
@@ -25,12 +25,17 @@ router = APIRouter()
 
 @router.get("/")
 def home(request: Request, db_session: Session = Depends(get_db)):
-    vacs = get_vacs(db_session, limit=1000)
+    vacs = get_vacs(db_session)
     return templates.TemplateResponse('job/index.html',
                                       {'request': request,
                                        'vac_list': vacs,
                                        'text_list': text_list}
                                       )
+
+@router.get("/del")
+def delete(db_session: Session = Depends(get_db)):
+    clear_vacs(db_session)
+    return RedirectResponse(url="/", status_code=HTTP_303_SEE_OTHER)
 
 @router.get('/{lang}')
 def chose_lang(lang: str, request: Request, db_session: Session = Depends(get_db)):
@@ -41,19 +46,12 @@ def chose_lang(lang: str, request: Request, db_session: Session = Depends(get_db
                                        'text_list': text_list}
                                       ) 
 
-
-#del and add action
-
 @router.get("/add/{yap}")
-async def add(yap: str ,db_session: Session = Depends(get_db)):
-    create_vac(db_session, func_list, yap)
+def add(yap: str ,db_session: Session = Depends(get_db)):
+    create_vacs(db_session, func_list, yap)
     return RedirectResponse(url="/", status_code=HTTP_303_SEE_OTHER)
 
-@router.get("/del")
-async def delete(db_session: Session = Depends(get_db)):
-    db_session.query(Vac).delete()
-    db_session.commit()
-    return RedirectResponse(url="/", status_code=HTTP_303_SEE_OTHER)
+
 
 
 

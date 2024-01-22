@@ -2,7 +2,6 @@ from pydantic import BaseModel
 
 
 class VacBase(BaseModel):
-    id: int
     lang: str
     title: str
     company: str

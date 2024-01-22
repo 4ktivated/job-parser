@@ -8,12 +8,18 @@ load_dotenv()
 url = os.getenv('SQLALCHEMY_DATABASE_URL')
 metadata = MetaData()
 
+# def get_db():
+#     db = SessionLocal()
+#     try:
+#         yield db
+#     finally:
+#         db.close()
+
 def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+    with SessionLocal() as session:
+        your_sess = session
+        yield your_sess
+
 
 
 def choose_db(arg_db):
